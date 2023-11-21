@@ -1,5 +1,13 @@
 /* reset */
 
+* {
+    margin    : 0;
+    padding   : 0;
+    box-sizing: border-box;
+}
+
+/* theme */
+
 :root {
     --primary      : #007DC5;
     --primary-light: #CCE5F3;
@@ -13,26 +21,48 @@
     --border       : 1px solid #ddd;
     --color        : #636466;
     --color-dark   : #444;
+    --color-primary: whitesmoke;
     --gray         : #636466;
     --gray-dark    : #444;
+    --max-width    : 1200px;
 }
 
-* {
-    margin    : 0;
-    padding   : 0;
-    box-sizing: border-box;
+/* debug */
+
+.b1 {
+    background-color: red;
 }
+
+.b2 {
+    background-color: blue;
+}
+
+.b3 {
+    background-color: green;
+}
+
+.b4 {
+    background-color: yellow;
+}
+
+/* body */
 
 body {
-    min-height: 100vh;
+    min-height : 100vh;
     font-family: var(--font-family);
+    color      : var(--color);
 }
 
 ul {
     list-style: none;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-dark);
+}
+
 /* flex */
+
 .d-flex {
     display: flex;
 }
@@ -61,24 +91,38 @@ ul {
     justify-content: center;
 }
 
+.justify-between {
+    justify-content: space-between;
+}
+
 .justify-end {
     justify-content: flex-end;
 }
 
+.flex-fill {
+    flex: 1;
+}
+
 /* margin */
-.m-5{
+
+.m-5 {
     margin: 5px;
 }
 
-.m-10{
+.m-10 {
     margin: 10px;
 }
 
-.m-20{
+.m-20 {
     margin: 20px;
 }
 
+.mr-5 {
+    margin-right: 5px;
+}
+
 /* padding */
+
 .p-5{
     padding: 5px;
 }
@@ -90,3 +134,56 @@ ul {
 .p-20{
     padding: 20px;
 }
+
+/* main */
+
+.content {
+    max-width: var(--max-width);
+}
+
+.btn {
+    border-radius: var(--border-radius);
+    padding: 5px 20px;
+    border: 0;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+}
+
+.btn:hover {
+    opacity: 0.8;
+    transition: opacity 0.4s;
+    box-shadow: none;
+}
+
+.btn-small {
+    padding: 5px 15px;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.btn-primary-stroke {
+    background-color: var(--color-primary);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+/* sidebar */
+
+.sidebar {
+    min-width: 200px;
+}
+
+/* header */
+
+.logo {
+    max-width:160px;
+}
+
+.logo img {
+    max-width:160px;
+}
+
