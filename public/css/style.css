@@ -1,0 +1,92 @@
+/* reset */
+
+:root {
+    --primary      : #007DC5;
+    --primary-light: #CCE5F3;
+    --accent       : #F05A24;
+    --warning      : #f7954b;
+    --danger       : #bf1829;
+    --success      : #00acab;
+    --font-family  : 'Nunito',                        sans-serif;
+    --box-shadow   : 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+    --border-radius: 3px;
+    --border       : 1px solid #ddd;
+    --color        : #636466;
+    --color-dark   : #444;
+    --gray         : #636466;
+    --gray-dark    : #444;
+}
+
+* {
+    margin    : 0;
+    padding   : 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: var(--font-family);
+}
+
+ul {
+    list-style: none;
+}
+
+/* flex */
+.d-flex {
+    display: flex;
+}
+
+.flex-row-nowrap {
+    flex-flow: row nowrap;
+}
+
+.flex-row-wrap {
+    flex-flow: row wrap;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.align-end {
+    align-items: flex-end;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+/* margin */
+.m-5{
+    margin: 5px;
+}
+
+.m-10{
+    margin: 10px;
+}
+
+.m-20{
+    margin: 20px;
+}
+
+/* padding */
+.p-5{
+    padding: 5px;
+}
+
+.p-10{
+    padding: 10px;
+}
+
+.p-20{
+    padding: 20px;
+}
