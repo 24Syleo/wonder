@@ -26,6 +26,7 @@
     --gray         : #636466;
     --gray-dark    : #444;
     --max-width    : 1200px;
+    --footer-back  : #0a3d62;
 }
 
 /* debug */
@@ -122,6 +123,14 @@ h1, h2, h3, h4, h5, h6 {
     margin-right: 5px;
 }
 
+.mr-20 {
+    margin-right: 20px;
+}
+
+.mr-50 {
+    margin-right: 50px;
+}
+
 /* padding */
 
 .p-5{
@@ -136,6 +145,15 @@ h1, h2, h3, h4, h5, h6 {
     padding: 20px;
 }
 
+.py-20 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.py-50 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
 /* main */
 
 .content {
@@ -202,4 +220,18 @@ header {
     border: 0;
     outline: 0;
     background-color: var(--gray-light);
+}
+
+/* footer */
+
+footer {
+    background-color: var(--footer-back);
+    color: var(--color-primary);
+}
+
+/* sidebar */
+
+.sidebar-nav li {
+    padding: 10px;
+    cursor: pointer;
 }
