@@ -18,10 +18,11 @@
     --font-family  : 'Nunito',                        sans-serif;
     --box-shadow   : 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
     --border-radius: 3px;
-    --border       : 1px solid #ddd;
+    --border       : 1px solid var(--gray-light);
     --color        : #636466;
     --color-dark   : #444;
     --color-primary: whitesmoke;
+    --gray-light   : #ddd;
     --gray         : #636466;
     --gray-dark    : #444;
     --max-width    : 1200px;
@@ -179,6 +180,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* header */
 
+header {
+    box-shadow: var(--box-shadow);
+}
+
 .logo {
     max-width:160px;
 }
@@ -187,3 +192,14 @@ h1, h2, h3, h4, h5, h6 {
     max-width:160px;
 }
 
+.search {
+    border-radius: var(--border-radius);
+    background-color: var(--gray-light);
+    max-width: 400px;
+}
+
+.search input {
+    border: 0;
+    outline: 0;
+    background-color: var(--gray-light);
+}
