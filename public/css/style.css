@@ -73,6 +73,11 @@ a {
     text-decoration: none;
 }
 
+small {
+    font-size: var(--font-size-small);
+    font-family: var(--font-family);
+}
+
 /* flex */
 
 .d-flex {
@@ -133,6 +138,10 @@ a {
     margin-right: 5px;
 }
 
+.mr-10 {
+    margin-right: 10px;
+}
+
 .mr-20 {
     margin-right: 20px;
 }
@@ -168,6 +177,11 @@ a {
     padding-top: 50px;
     padding-bottom: 50px;
 }
+
+.pb-20 {
+    padding-bottom: 20px;
+}
+
 /* main */
 
 .app-content {
@@ -215,6 +229,12 @@ a {
     box-shadow: var(--box-shadow);
 }
 
+.block-shadow:hover {
+    cursor: pointer;
+    box-shadow: none;
+    transition: box-shadow 0.4s;
+}
+
 .form-row {
     display: flex;
     flex-flow: column;
@@ -243,6 +263,21 @@ a {
     color: var(--danger);
     font-size: var(--font-size-small);
     font-weight: var(--font-weight-semibold);
+}
+
+.avatar {
+    width: 25px;
+    border-radius: 50%;
+}
+
+.clickable {
+    color:var(--primary);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+}
+
+.text-small {
+    font-size: var(--font-size-small);
 }
 
 /* sidebar */
@@ -306,4 +341,18 @@ footer {
 .active {
     border-left: 5px solid var(--primary);
     background-color: var(--primary-light);
+}
+
+/* questions */
+
+.question-content {
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.rating-up {
+    color: var(--primary);
+}
+
+.rating-down {
+    color: var(--warning);
 }
