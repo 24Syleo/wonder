@@ -101,6 +101,9 @@ a {
 
 .justify-center {
     justify-content: center;
+}
+
+.justify-between {
     justify-content: space-between;
 }
 
@@ -206,7 +209,7 @@ a {
 }
 
 .block {
-    padding: 15px;
+    padding: 20px;
     border-radius: var(--border-radius);
     background-color: white;
     box-shadow: var(--box-shadow);
@@ -215,6 +218,7 @@ a {
 .form-row {
     display: flex;
     flex-flow: column;
+    margin-bottom: 15px;
 }
 
 .form-row label {
@@ -224,6 +228,7 @@ a {
 }
 
 .form-row input,textarea {
+    font-family: var(--font-family);
     border: 0;
     border-radius: var(--border-radius);
     padding: 10px 15px;
