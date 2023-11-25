@@ -14,31 +14,34 @@ class HomeController extends AbstractController
 
         $questions = [
             [
-                'title' => 'titre un',
+                'id'      => '1',
+                'title'   => 'Question une',
                 'content' => 'Lorem ipsum dolor sit amet, consectetur adip',
-                'rating' => 20,
-                'author' => [
-                    'name' => 'Jean Dupont',
+                'rating'  => 20,
+                'author'  => [
+                    'name'   => 'Jean Dupont',
                     'avatar' => 'https://randomuser.me/api/portraits/men/6.jpg'
                 ],
                 'nbrOfResponse' => 15
             ],
             [
-                'title' => 'titre deux',
+                'id'      => '2',
+                'title'   => 'Question deux',
                 'content' => 'Lorem ipsum dolor sit amet, consectetur adip, Lorem again',
-                'rating' => -15,
-                'author' => [
-                    'name' => 'Sylvie Vartant',
+                'rating'  => -15,
+                'author'  => [
+                    'name'   => 'Sylvie Vartant',
                     'avatar' => 'https://randomuser.me/api/portraits/women/6.jpg'
                 ],
                 'nbrOfResponse' => 150
             ],
             [
-                'title' => 'titre trois',
+                'id'      => '3',
+                'title'   => 'Question trois',
                 'content' => 'Lorem ipsum dolores, bla bla bla bla bla ',
-                'rating' => 0,
-                'author' => [
-                    'name' => 'Julie Martin',
+                'rating'  => 0,
+                'author'  => [
+                    'name'   => 'Julie Martin',
                     'avatar' => 'https://randomuser.me/api/portraits/women/38.jpg'
                 ],
                 'nbrOfResponse' => 2
