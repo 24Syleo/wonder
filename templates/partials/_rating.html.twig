@@ -1,0 +1,11 @@
+<div class="d-flex flex-col mr-20 align-center">
+	<i class="fas fa-arrow-up  {{ question.rating > 0 ? " rating-up" : '' }}"></i>
+	<p {% if question.rating > 0 %} 
+            class="rating-up text-small" 
+        {% elseif question.rating < 0 %} 
+            class="rating-down text-small" 
+        {% else %} 
+            class="text-small" 
+        {% endif %} >{{ question.rating }} 
+    </p>
+</div>

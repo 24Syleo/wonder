@@ -7,19 +7,7 @@
     <ul>
         {% for question in questions %}
             <a href="{{ path('question_show', { id: question.id }) }}" class="block block-shadow d-flex flex-row mb-20">
-                <div class="d-flex flex-col mr-20 align-center">
-                    <i class="fas fa-arrow-up  {{ question.rating > 0 ? "rating-up" : '' }}"></i>
-                        <p
-                            {% if question.rating > 0 %}
-                                class="rating-up text-small"
-                            {% elseif question.rating < 0 %}
-                                class="rating-down text-small"
-                            {% else %}
-                                class="text-small"
-                            {% endif %}
-                        >{{  question.rating }}</p>
-                    <i class="fas fa-arrow-down {{ question.rating < 0 ? "rating-down" : '' }}"></i>
-                </div>
+                {% include "partials/_rating.html.twig" %}
                 <div class="flex-fill d-flex flex-col">
                     <div class="mb-20 question-content pb-20">
                         <h3>{{ question.title }}</h3>
@@ -27,8 +15,8 @@
                     </div>
                     <div class="d-flex flex-row justify-between align-center">
                         <div class="d-flex flex-row align-center">
-                            <img class="avatar mr-10" src="{{ question.author.avatar }}">
-                            <small>Demandé par <span class="clickable">{{ question.author.name }}</span></small>
+                            <img class="avatar mr-10" src="https://randomuser.me/api/portraits/men/24.jpg">
+                            <small>Demandé par <span class="clickable">Jean Louis Hervé</span></small>
                         </div>
                         <div class="d-flex flex-row align-center">
                             <i class="far fa-comment mr-10"></i>

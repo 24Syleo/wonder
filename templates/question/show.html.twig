@@ -20,14 +20,16 @@
 		<p class="question-text">{{ question.content }}</p>
 		<div class="separator"></div>
 		{% for comment in question.comments %}
-            <div class="question-response-elem">
-                <div class="d-flex flex-row-nowrap align-center">
+            <div class="question-response-elem mb-20">
+                <div class="d-flex flex-row-nowrap align-center pb-10">
                     <img src="https://randomuser.me/api/portraits/men/18.jpg" class="avatar mr-10">
-                    <p>Ahmed Khechich</p>
-                    <span>12/12/23</span>
+                    <p class="clickable">Ahmed Khechich</p>
+                    <small class="ml-auto">12/12/23</small>
                 </div>
+                <p class="question-response-text">{{ comment.content }}</p>
             </div>
         {% endfor %}
+        <div class="separator"></div>
 		<h3 class="pb-20">Votre réponse</h3>
 		<div class="comment-form">
 			{{ form_start(form) }}
