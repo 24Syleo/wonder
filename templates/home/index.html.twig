@@ -7,7 +7,7 @@
     <ul>
         {% for question in questions %}
             <a href="{{ path('question_show', { id: question.id }) }}" class="block block-shadow d-flex flex-row mb-20">
-                {% include "partials/_rating.html.twig" %}
+                {% include "partials/_rating.html.twig" with{ rating: question.rating } %}
                 <div class="flex-fill d-flex flex-col">
                     <div class="mb-20 question-content pb-20">
                         <h3>{{ question.title }}</h3>
