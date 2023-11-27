@@ -68,7 +68,7 @@ class QuestionController extends AbstractController
         ]);
     }
  
-    #[Route('/question/{id}/{score}', name: 'question_rating')]
+    #[Route('/question/rating/{id}/{score}', name: 'question_rating')]
     public function ratingQuestion(Request $req, Question $question, int $score, EntityManagerInterface $em)
     {
         $question->setRating($question->getRating() + $score);
@@ -79,7 +79,7 @@ class QuestionController extends AbstractController
         return $referer ? $this->redirect($referer) : $this->redirectToRoute('home') ;
     }
 
-    #[Route('/comment/{id}/{score}', name: 'comment_rating')]
+    #[Route('/comment/rating/{id}/{score}', name: 'comment_rating')]
     public function ratingComment(Request $req, Comment $comment, int $score, EntityManagerInterface $em)
     {
         $comment->setRating($comment->getRating() + $score);

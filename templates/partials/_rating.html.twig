@@ -1,5 +1,5 @@
 <div class="d-flex flex-col mr-20 align-center">
-    <a href="{{ from == 'question' ?  path('question_rating', { id: id,  score: 1}) : path('comment_rating', { id: id,  score: 1}) }}">
+    <a href="{{ path( from ~ '_rating', { id: id,  score: 1}) }}">
 	    <i class="fas fa-arrow-up  {{ rating > 0 ? " rating-up" : '' }}"></i>
     </a>
 	<p {% if rating > 0 %} 
@@ -10,7 +10,7 @@
             class="text-small" 
         {% endif %} >{{ rating }} 
     </p>
-    <a href="{{ from == 'question' ?  path('question_rating', { id: id,  score: -1}) : path('comment_rating', { id: id,  score: -1}) }}">
+    <a href="{{ path( from ~ '_rating', { id: id,  score: -1}) }}">
         <i class="fas fa-arrow-down  {{ rating < 0 ? " rating-down" : '' }}"></i>
     </a>
 </div>
