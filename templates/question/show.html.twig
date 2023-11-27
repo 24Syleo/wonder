@@ -12,7 +12,7 @@
 {% block body %}
 	<div class="block">
 		<div class="d-flex flex-row-nowrap">
-			{% include "partials/_rating.html.twig" with { rating: question.rating } %}
+			{% include "partials/_rating.html.twig" with { rating: question.rating, from: 'question', id: question.id } %}
 			<div class="d-flex flex-col">
 				<div class="pb-30 d-flex flex-row-nowrap align-center">
 					<h3 class="mr-10">{{ question.title }}</h3>
@@ -23,7 +23,7 @@
 				<div class="separator"></div>
 				{% for comment in question.comments %}
 					<div class="d-flex flex-row-nowrap mb-20">
-						{% include "partials/_rating.html.twig" with { rating: comment.rating } %}
+						{% include "partials/_rating.html.twig" with { rating: comment.rating, from: 'comment', id: comment.id } %}
 						<div class="d-flex flex-col">
 							<div class="d-flex flex-row-nowrap align-center pb-10">
 								<img src="https://randomuser.me/api/portraits/men/18.jpg" class="avatar mr-10">
