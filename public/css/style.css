@@ -173,6 +173,10 @@ small {
     padding: 10px;
 }
 
+.p-20{
+    padding: 20px;
+}
+
 .py-20 {
     padding-top: 20px;
     padding-bottom: 20px;

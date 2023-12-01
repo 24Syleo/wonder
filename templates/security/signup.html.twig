@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription sur wonder!{% endblock %}
+
+{% block body %}
+
+    <div class="block">
+        <h2 class="pb-30">Inscription</h2>
+        {{  form_start(form) }}
+        {{  form_rest(form) }}
+        <button class="mr-10 btn btn-primary">
+            Inscription
+        </button>
+        <small>
+            <a href="{{ path('login') }}">Vous avez déjà un compte ?</a>
+        </small>
+        {{  form_end(form) }}
+    </div>
+
+{% endblock %}

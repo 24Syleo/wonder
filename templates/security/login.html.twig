@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion sur wonder!
+{% endblock %}
+
+{% block body %}
+
+	<div class="block">
+		<h2 class="pb-30">Connexion</h2>
+		<form action="{{ path('login') }}" method="post">
+			<div class="form-row">
+				<label for="email">Email</label>
+				<input type="text" autofocus name="_username" value="{{ username }}" id="email">
+			</div>
+			<div class="form-row">
+				<label for="password">Mot de passe</label>
+				<input type="password" name="_password" id="password">
+			</div>
+			<div class="form-row">
+				<label for="remember">
+					<input type="checkbox" name="_remember_me" id="remember">
+					Se souvenir de moi
+				</label>
+			</div>
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+			{% if error %}
+				<ul class="forms-errors pb-20">
+					<li>
+						{{ error.messageKey | trans(error.messageData, 'security') }}
+					</li>
+				</ul>
+			{% endif %}
+
+			<button class="btn btn-primary mr-10">
+				connexion
+			</button>
+			<small>
+				<a href="{{ path('signup') }}">Avez-vous déjà un compte ?</a>
+			</small>
+		</form>
+	</div>
+
+{% endblock %}
