@@ -16,7 +16,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserController extends AbstractController
 {
     #[Route('/user/{id}', name: 'user')]
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    #[IsGranted('IS_AUTHENTICATED_REMEMBERED')]
     public function userProfile(User $user): Response
     {
         $currentUser = $this->getUser();
@@ -31,7 +31,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/user', name: 'current_user')]
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    #[IsGranted('IS_AUTHENTICATED_REMEMBERED')]
     public function currentUserProfile(Request $req, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user     = $this->getUser();
@@ -59,7 +59,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/user/questions/list', name: 'questions_user')]
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    #[IsGranted('IS_AUTHENTICATED_REMEMBERED')]
     public function questionUserProfile(): Response
     {
         $user = $this->getUser();
@@ -67,7 +67,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/user/comments/list', name: 'comments_user')]
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    #[IsGranted('IS_AUTHENTICATED_REMEMBERED')]
     public function commentUserProfile(): Response
     {
         $user = $this->getUser();
