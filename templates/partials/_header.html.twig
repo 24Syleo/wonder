@@ -1,15 +1,24 @@
 <header class="d-flex flex-row-nowrap justify-center p-20 ">
-    <div class="content flex-fill d-flex flex-row-nowrap justify-between align-center">
-        <a class="logo" href="{{ path('home') }}">
-            <img src="{{ asset('pics/logo.png') }}" alt="logo">
-        </a>
-        <div class="search p-10 flex-fill d-flex align-center flex-row-nowrap">
-            <i class="fas fa-search mr-5"></i>
-            <input type="text">
-        </div>
-        <div>
-            <a href="{{ path('signup') }}" type="button" class="btn btn-small btn-primary-stroke">Inscription</a>
-            <a href="{{ path('login') }}" type="button" class="btn btn-small btn-primary mr-5">Connexion</a>
-        </div>
-    </div>
+	<div class="content flex-fill d-flex flex-row-nowrap justify-between align-center">
+		<a class="logo" href="{{ path('home') }}">
+			<img src="{{ asset('pics/logo.png') }}" alt="logo">
+		</a>
+		<div class="search p-10 flex-fill d-flex align-center flex-row-nowrap">
+			<i class="fas fa-search mr-5"></i>
+			<input type="text">
+		</div>
+		{% if is_granted('ROLE_USER') %}
+			<div class="d-flex flow-row-nowrap justify-center align-center">
+				<img src="{{ app.user.picture }}" class="avatar avatar-lg mr-10">
+				<small>
+					<a href="{{ path('logout') }}">Déconnexion</a>
+				</small>
+			</div>
+		{% else %}
+			<div>
+				<a href="{{ path('signup') }}" type="button" class="btn btn-small btn-primary-stroke">Inscription</a>
+				<a href="{{ path('login') }}" type="button" class="btn btn-small btn-primary mr-5">Connexion</a>
+			</div>
+		{% endif %}
+	</div>
 </header>

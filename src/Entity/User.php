@@ -43,14 +43,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $lastname = null;
 
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Question::class, orphanRemoval: true)]
-    #[Assert\NotBlank(message: 'Veuillez trouver un avatar.')]
-    #[Assert\Url(message: 'Ce doit être une url.')]
     private Collection $questions;
 
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez trouver un avatar.')]
+    #[Assert\Url(message: 'Ce doit être une url.')]
     private ?string $picture = null;
 
     public function __construct()
