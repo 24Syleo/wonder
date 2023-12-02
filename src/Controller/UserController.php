@@ -57,4 +57,20 @@ class UserController extends AbstractController
             'form' => $userForm->createView()
         ]);
     }
+
+    #[Route('/user/questions/list', name: 'questions_user')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    public function questionUserProfile(): Response
+    {
+        $user = $this->getUser();
+        return $this->render('user/question.html.twig', ['user' => $user]);
+    }
+
+    #[Route('/user/comments/list', name: 'comments_user')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    public function commentUserProfile(): Response
+    {
+        $user = $this->getUser();
+        return $this->render('user/comment.html.twig', ['user' => $user]);
+    }
 }
