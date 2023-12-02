@@ -4,6 +4,9 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\CommentRepository;
+use App\Repository\QuestionRepository;
+use App\Repository\VoteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,17 +63,25 @@ class UserController extends AbstractController
 
     #[Route('/user/questions/list', name: 'questions_user')]
     #[IsGranted('IS_AUTHENTICATED_REMEMBERED')]
-    public function questionUserProfile(): Response
+    public function questionUserProfile(QuestionRepository $questionRepo): Response
     {
-        $user = $this->getUser();
-        return $this->render('user/question.html.twig', ['user' => $user]);
+        $user      = $this->getUser();
+        $questions = $questionRepo->findBy(['author'  => $user ]);
+        return $this->render('user/question.html.twig', [
+            'user'      => $user,
+            'questions' => $questions
+        ]);
     }
 
     #[Route('/user/comments/list', name: 'comments_user')]
     #[IsGranted('IS_AUTHENTICATED_REMEMBERED')]
-    public function commentUserProfile(): Response
+    public function commentUserProfile(CommentRepository $commentRepo): Response
     {
-        $user = $this->getUser();
-        return $this->render('user/comment.html.twig', ['user' => $user]);
+        $user     = $this->getUser();
+        $comments = $commentRepo->findBy(['author' => $user]);
+        return $this->render('user/comment.html.twig', [
+            'user'     => $user,
+            'comments' => $comments
+        ]);
     }
 }

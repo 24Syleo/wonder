@@ -79,6 +79,10 @@ small {
     font-family: var(--font-family);
 }
 
+.italic {
+    font-style: italic;
+}
+
 /* flex */
 
 .d-flex {

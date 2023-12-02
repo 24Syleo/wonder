@@ -1,19 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon profil{% endblock %}
+{% block title %}Mon profil
+{% endblock %}
 
 {% block body %}
 
-    <div class="block mb-20">
-        <h3 class="pb-30">Mes questions</h3>
-        <ul>
-        {% for question in app.user.questions %}
-            <li>
-                <h3 class="pb-20">{{ question.title }}</h3>
-                <p class="pb-20">{{ question.content }}</p>
-            </li>
-        {% endfor %}
-        </ul>
-    </div>
+	<div class="block mb-20">
+		<h3 class="pb-30">Mes questions</h3>
+		<ul>
+			{% for question in questions %}
+				<li>
+					<div class="pb-20 d-flex flex-row-nowrap justify-between align-center">
+						<p  {% if question.rating > 0 %} 
+                                class="rating-up text-small mr-10" 
+                            {% elseif question.rating < 0 %} 
+                                class="rating-down text-small mr-10" 
+                            {% else %} 
+                                class="text-small mr-10" 
+                            {% endif %} >Vote: {{ question.rating }}
+                        </p>
+						<h3 class="mr-10">{{ question.title }}</h3>
+						<p class="italic">{{ question.createdAt | date("d/m/Y") }}</p>
+					</div>
+					<p class="pb-20">{{ question.content }}</p>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
 
 {% endblock %}
