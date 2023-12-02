@@ -126,7 +126,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
       /**
      * @see PasswordAuthenticatedUserInterface
      */
-    public function getNewPassword(): string
+    public function getNewPassword(): ?string
     {
         return $this->newPassword;
     }

@@ -50,6 +50,7 @@ class UserController extends AbstractController
             }
             $em->flush();
             $this->addFlash('success', 'Modification utilisateur réussie');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('user/index.html.twig', [
