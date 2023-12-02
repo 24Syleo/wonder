@@ -25,8 +25,8 @@ class UserController extends AbstractController
             return $this->redirectToRoute('current_user');
         }
 
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
+        return $this->render('user/show.html.twig', [
+            'user' => $user
         ]);
     }
 

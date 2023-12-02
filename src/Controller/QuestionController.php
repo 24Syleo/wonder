@@ -2,15 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Vote;
 use App\Entity\Comment;
 use App\Entity\Question;
 use App\Form\CommentType;
 use App\Form\QuestionType;
+use App\Repository\VoteRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class QuestionController extends AbstractController
@@ -70,12 +72,41 @@ class QuestionController extends AbstractController
 
   #[Route('/question/rating/{id}/{score}', name: 'question_rating')]
   #[IsGranted('ROLE_USER')]
-  public function ratingQuestion(Request $request, Question $question, int $score, EntityManagerInterface $em)
+  public function ratingQuestion(Request $request, Question $question, int $score, EntityManagerInterface $em, VoteRepository $voteRepo)
   {
-      $question->setRating($question->getRating() + $score);
-      $em->flush();
-      $referer = $request->server->get('HTTP_REFERER');
-      return $referer ? $this->redirect($referer) : $this->redirectToRoute('home');
+
+    $user = $this->getUser();
+    if ($user !== $question->getAuthor())
+    {
+        $vote = $voteRepo->findBy([
+            'user' => $user,
+            'question' => $question
+        ])[0] ?? null;
+        if($vote)
+        {
+            if (($vote->isIsLiked() && $score > 0) || (!$vote->isIsLiked() && $score < 0))
+            {
+                $em->remove($vote);
+                $question->setRating($question->getRating() + ($score > 0 ? -1 : 1));
+            } else
+            {
+                $vote->setIsLiked(!$vote->isIsLiked());
+                $question->setRating($question->getRating() + ($score > 0 ? -2 : 2));
+            }
+        } else 
+        {
+            $vote = new Vote();
+            $vote->setAuthor($user);
+            $vote->setQuestion($question);
+            $vote->setIsLiked($score > 0 ? true : false);
+            $question->setRating($question->getRating() + $score);
+            $em->persist($vote);
+        }
+        $em->flush();
+    }
+    
+    $referer = $request->server->get('HTTP_REFERER');
+    return $referer ? $this->redirect($referer) : $this->redirectToRoute('home');
   }
 
   #[Route('/comment/rating/{id}/{score}', name: 'comment_rating')]
