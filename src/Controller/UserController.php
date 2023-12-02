@@ -38,7 +38,7 @@ class UserController extends AbstractController
         $userForm = $this->createForm(UserType::class, $user);
 
         $userForm->remove('password');
-        $userForm->add('newPassword', PasswordType::class, ['label' => 'Nouveau mot de passe']);
+        $userForm->add('newPassword', PasswordType::class, ['label' => 'Nouveau mot de passe', 'required' => false]);
         $userForm->handleRequest($req);
         if($userForm->isSubmitted() && $userForm->isValid())
         {
