@@ -11,11 +11,17 @@
             <i class="fas fa-home mr-5"></i>
             Liste des questions
         </a>
-        <a href="#">
+        <a href="{{ path('questions_user') }}"
+             {% if app.request.pathinfo == path('questions_user') %}
+                class='active'
+            {% endif %}>
             <i class="fas fa-pen mr-5"></i>
             Mes questions
         </a>
-        <a href="#">
+        <a href="{{ path('comments_user') }}"
+            {% if app.request.pathinfo == path('comments_user') %}
+                class='active'
+            {% endif %}>
             <i class="fas fa-puzzle-piece mr-5"></i>
             Mes réponses
         </a>

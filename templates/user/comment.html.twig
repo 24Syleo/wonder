@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block body %}
+
+    <div class="block mb-20">
+        <h3 class="pb-30">Mes réponses</h3>
+        <ul>
+        {% for comment in comments %}
+            <li>
+                <div class="pb-20 d-flex flex-row-nowrap justify-between align-center">
+						<p  {% if comment.rating > 0 %} 
+                                class="rating-up text-small mr-10" 
+                            {% elseif comment.rating < 0 %} 
+                                class="rating-down text-small mr-10" 
+                            {% else %} 
+                                class="text-small mr-10" 
+                            {% endif %} >Vote: {{ comment.rating }}
+                        </p>
+						<p class="italic">{{ comment.createdAt | date("d/m/Y") }}</p>
+					</div>
+                <p class="pb-20">{{ comment.content }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
