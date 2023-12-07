@@ -20,7 +20,10 @@
 					<img class="avatar ml-auto" src="https://randomuser.me/api/portraits/men/6.jpg">
 				</div>
 				<p class="question-text">{{ question.content }}</p>
-				<div class="separator"></div>
+				{% if question.comments is not empty %}
+					<div class="separator"></div>
+				{% endif %}
+				
 				{% for comment in question.comments %}
 					<div class="d-flex flex-row-nowrap mb-20">
 						{% include "partials/_rating.html.twig" with { rating: comment.rating, from: 'comment', id: comment.id } %}
@@ -34,14 +37,16 @@
 						</div>
 					</div>
 				{% endfor %}
-				<div class="separator"></div>
-				<h3 class="pb-20">Votre réponse</h3>
-				<div class="comment-form">
-					{{ form_start(form) }}
-					{{ form_rest(form) }}
-					<button class="btn btn-primary">Soumettre</button>
-					{{ form_end(form) }}
-				</div>
+				{% if form is defined %}
+					<div class="separator"></div>
+					<h3 class="pb-20">Votre réponse</h3>
+					<div class="comment-form">
+						{{ form_start(form) }}
+						{{ form_rest(form) }}
+						<button class="btn btn-primary">Soumettre</button>
+						{{ form_end(form) }}
+					</div>
+				{% endif %}
 			</div>
 		</div>
 	</div>

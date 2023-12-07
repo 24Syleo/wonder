@@ -293,6 +293,10 @@ small {
     border-radius: 50%;
 }
 
+.avatar-lg {
+    width: 40px;
+}
+
 .clickable {
     color:var(--primary);
     font-weight: var(--font-weight-semibold);
@@ -395,4 +399,9 @@ footer {
 
 .rating-down {
     color: var(--warning);
+}
+
+.question-text, .question-response-text {
+    line-height: var(--line-height-hight);
+    white-space: pre-wrap;
 }

@@ -7,11 +7,6 @@
     padding: 5px 10px;
 }
 
-.question-text, .question-response-text {
-    line-height: var(--line-height-hight);
-    white-space: pre-wrap;
-}
-
 small {
     color: var(--gray-dark);
     font-style: italic;
