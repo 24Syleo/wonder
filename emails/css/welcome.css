@@ -1,0 +1,11 @@
+html {
+    font-family: 'Nunito', sans-serif;
+    color: 636466;
+}
+
+a {
+    text-decoration: none;
+    padding: 5px;
+    background-color: 007DC5;
+    border-radius: 3px;
+}

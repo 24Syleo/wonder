@@ -30,13 +30,19 @@
 					</li>
 				</ul>
 			{% endif %}
-
-			<button class="btn btn-primary mr-10">
-				connexion
-			</button>
-			<small>
-				<a href="{{ path('signup') }}">Avez-vous déjà un compte ?</a>
-			</small>
+			<div class="d-flex flex-row">
+				<button class="btn btn-primary mr-10">
+					connexion
+				</button>
+				<div class="d-flex flex-col">
+					<small>
+						<a href="{{ path('signup') }}">Avez-vous déjà un compte ?</a>
+					</small>
+					<small>
+						<a href="{{ path('reset_password_request') }}">Avez-vous oublié votre mot de passe ?</a>
+					</small>
+				</div>
+			</div>
 		</form>
 	</div>
 
