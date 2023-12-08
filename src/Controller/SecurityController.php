@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\RateLimiter\RateLimiterFactory;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -76,9 +77,16 @@ class SecurityController extends AbstractController
     }
 
     #[Route('/reset_password/{token}', name: 'reset_password')]
-    public function resetPassword(UserPasswordHasherInterface $userPasswordHasher,string $token, EntityManagerInterface $em, ResetPasswordRepository $resetPasswordRepo, Request $req)
+    public function resetPassword(RateLimiterFactory $passwordRecoveryLimiter,UserPasswordHasherInterface $userPasswordHasher,string $token, EntityManagerInterface $em, ResetPasswordRepository $resetPasswordRepo, Request $req)
     {
-        $resetPassword = $resetPasswordRepo->findOneBy(['token' => $token]);
+        $limiter = $passwordRecoveryLimiter->create($req->getClientIp());
+        if (false === $limiter->consume(1)->isAccepted())
+        {
+            $this->addFlash('error', 'Vous avez fais trop de demande, patientez une heure pour recommencer');
+            return $this->redirectToRoute('login');
+        }
+        
+        $resetPassword = $resetPasswordRepo->findOneBy(['token' => sha1($token)]);
         if(!$resetPassword || $resetPassword->getExpiredAt() < new DateTime('now'))
         {
             if ($resetPassword)
@@ -121,8 +129,15 @@ class SecurityController extends AbstractController
     }
 
     #[Route('/reset_password_request', name: 'reset_password_request')]
-    public function reset_password_request(Request $req, UserRepository $userRepo, ResetPasswordRepository $resetPasswordRepo, EntityManagerInterface $em, MailerInterface $mailer)
+    public function reset_password_request(RateLimiterFactory $passwordRecoveryLimiter,Request $req, UserRepository $userRepo, ResetPasswordRepository $resetPasswordRepo, EntityManagerInterface $em, MailerInterface $mailer)
     {
+        $limiter = $passwordRecoveryLimiter->create($req->getClientIp());
+        if (false === $limiter->consume(1)->isAccepted())
+        {
+            $this->addFlash('error', 'Vous avez fais trop de demande, patientez une heure pour recommencer');
+            return $this->redirectToRoute('login');
+        }
+
         $emailForm = $this->createFormBuilder()->add('email', EmailType::class, [
             'constraints' => [
                 new NotBlank([
@@ -149,7 +164,7 @@ class SecurityController extends AbstractController
                 $resetPassword->setUser($user);
                 $resetPassword->setExpiredAt(new \DateTimeImmutable('+2 hours'));
                 $token = substr(str_replace(['+','/','=',],'', base64_encode(random_bytes(30))),0,20);
-                $resetPassword->setToken($token);
+                $resetPassword->setToken(sha1($token));
                 $em->persist($resetPassword);
                 $em->flush();
                 $email = new TemplatedEmail();
