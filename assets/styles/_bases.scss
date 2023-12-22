@@ -1,11 +1,23 @@
+@use './mixin' as *;
+
 /* main */
 
 .app-content {
     background-color: var(--gray-light);
+    padding: 0 20px;
+    @include md {
+        padding: 10px;
+    }
 }
 
 .content {
     max-width: var(--max-width);
+    &-main {
+        padding: 50px 0;
+        @include md {
+            padding: 0 0 50px 0;
+        }
+    }
 }
 
 .separator {
