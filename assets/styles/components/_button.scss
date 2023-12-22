@@ -1,0 +1,29 @@
+.btn {
+    border-radius: var(--border-radius);
+    padding: 5px 20px;
+    border: 0;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+}
+
+.btn:hover {
+    opacity: 0.8;
+    transition: opacity 0.4s;
+    box-shadow: none;
+}
+
+.btn-small {
+    padding: 5px 15px;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.btn-primary-stroke {
+    background-color: var(--color-primary);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}

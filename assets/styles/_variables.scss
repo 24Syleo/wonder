@@ -1,0 +1,28 @@
+/* theme */
+
+:root {
+    --primary             : #007DC5;
+    --primary-light       : #CCE5F3;
+    --accent              : #F05A24;
+    --warning             : #f7954b;
+    --danger              : #bf1829;
+    --success             : #00acab;
+    --font-family         : 'Nunito',                        sans-serif;
+    --box-shadow          : 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+    --border-radius       : 3px;
+    --border              : 1px solid var(--gray-light);
+    --color               : #636466;
+    --color-dark          : #444;
+    --color-primary       : whitesmoke;
+    --gray-light          : #ddd;
+    --gray                : #636466;
+    --gray-dark           : #444;
+    --max-width           : 1200px;
+    --footer-back         : #0a3d62;
+    --font-size-small     : 14px;
+    --font-size-regular   : 16px;
+    --font-weight-regular : 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold    : 700;
+    --line-height-hight   : 30px;
+}
