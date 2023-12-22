@@ -7,7 +7,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class Uploader {
 
-    public function __construct(private ContainerInterface $container, private Filesystem $fs){}
+    public function __construct(private ContainerInterface $container, private Filesystem $fs){
+        $this->container = $container;
+    }
     public function uploadProfileImage($picture, $oldPicturePath = null){
 
         $folder   = $this->container->getParameter('profile.folder');
