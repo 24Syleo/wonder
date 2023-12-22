@@ -54,8 +54,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $comments;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'Veuillez trouver un avatar.')]
-    #[Assert\Url(message: 'Ce doit être une url.')]
     private ?string $picture = null;
 
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Vote::class, orphanRemoval: true)]

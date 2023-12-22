@@ -7,6 +7,7 @@ use App\Form\UserType;
 use App\Repository\CommentRepository;
 use App\Repository\QuestionRepository;
 use App\Repository\VoteRepository;
+use App\Service\Uploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,7 +36,7 @@ class UserController extends AbstractController
 
     #[Route('/user', name: 'current_user')]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
-    public function currentUserProfile(Request $req, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response
+    public function currentUserProfile(Uploader $uploader,Request $req, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user     = $this->getUser();
         $userForm = $this->createForm(UserType::class, $user);
@@ -50,6 +51,10 @@ class UserController extends AbstractController
             {
                 $hash = $passwordHasher->hashPassword($user, $newPassword);
                 $user->setPassword($hash);
+            }
+            $picture = $userForm->get('pictureFile')->getData();
+            if ($picture) {
+                $user->setPicture($uploader->uploadProfileImage($picture));
             }
             $em->flush();
             $this->addFlash('success', 'Modification utilisateur réussie');

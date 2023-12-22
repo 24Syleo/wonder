@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\ResetPasswordRepository;
 use App\Repository\UserRepository;
+use App\Service\Uploader;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -26,7 +27,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class SecurityController extends AbstractController
 {
     #[Route('/signup', name: 'signup')]
-    public function signup(Request $req, EntityManagerInterface $em, UserPasswordHasherInterface $passHasher, MailerInterface $mailer)
+    public function signup(Uploader $uploader, Request $req, EntityManagerInterface $em, UserPasswordHasherInterface $passHasher, MailerInterface $mailer)
     { 
         $user     = new User();
         $userForm = $this->createForm(UserType::class, $user);
@@ -34,6 +35,8 @@ class SecurityController extends AbstractController
 
         if($userForm->isSubmitted() && $userForm->isValid())
         {
+            $picture  = $userForm->get('pictureFile')->getData();
+            $user->setPicture($uploader->uploadProfileImage($picture));
             $user->setPassword($passHasher->hashPassword($user, $user->getPassword()));
             $em->persist($user);
             $em->flush();
