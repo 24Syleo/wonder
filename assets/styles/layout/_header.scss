@@ -32,11 +32,18 @@ header {
 
 .burger {
     font-size : var(--font-size-large);
+    color: var(--primary);
 }
 
 .menu-md {
+    margin: 5px;
+    color: var(--primary);
+    font-size: var(--font-size-medium);
     a {
         margin: 10px 15px;
+    }
+    a:hover {
+        text-decoration: underline;
     }
     border-bottom: var(--border);
     box-shadow: var(--box-shadow);
