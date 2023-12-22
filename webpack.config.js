@@ -21,6 +21,14 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.ts')
+    .addStyleEntry('question_show', './assets/styles/question_show.scss')
+
+    .copyFiles({
+        from: './assets/pics',
+        pattern: /\.(png|jpg|jpeg)$/,
+        // to path is relative to the build directory
+        to: 'pics/[path][name].[ext]'
+    })
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
