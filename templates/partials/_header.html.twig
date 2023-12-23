@@ -3,9 +3,9 @@
 		<a class="logo" href="{{ path('home') }}">
 			<img src="{{ asset('build/pics/logo.png') }}" alt="logo">
 		</a>
-		<div class="search p-10 flex-fill d-flex align-center flex-row-nowrap">
-			<i class="fas fa-search mr-5"></i>
-			<input type="text">
+		<div id="search" class="search p-10 flex-fill d-flex align-center flex-row">
+			<i class="fas fa-search mr-10"></i>
+			<input @input="updateInput" ref="input" type="text" class="flex-fill">
 		</div>
 		{% if is_granted('ROLE_USER') %}
 			<div class="d-flex flow-row-nowrap justify-center align-center md-hide">

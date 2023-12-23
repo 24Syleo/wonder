@@ -1,3 +1,5 @@
+import './searchbar';
+
 const burger     = document.querySelector('.burger');
 const menu       = document.querySelector('.menu-md');
 const appContent = document.querySelector('.app-content');
