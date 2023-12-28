@@ -25,7 +25,7 @@ Encore
 
     .copyFiles({
         from: './assets/pics',
-        pattern: /\.(png|jpg|jpeg)$/,
+        pattern: /\.(png|jpg|jpeg|gif)$/,
         // to path is relative to the build directory
         to: 'pics/[path][name].[ext]'
     })

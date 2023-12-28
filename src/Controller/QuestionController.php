@@ -107,7 +107,6 @@ class QuestionController extends AbstractController
     }
 
     #[Route('/comment/rating/{id}/{score}', name: 'comment_rating')]
- 
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function ratingComment(Request $req, Comment $comment, int $score, EntityManagerInterface $em, VoteRepository $voteRepo)
     {
@@ -138,5 +137,17 @@ class QuestionController extends AbstractController
 
         $referer = $req->server->get('HTTP_REFERER');
         return $referer ? $this->redirect($referer) : $this->redirectToRoute('home');
+    }
+
+    #[Route('/question/search/{search}', name: 'question_search', priority: 1)]
+    public function search(string $search = "none", QuestionRepository $questionRepo)
+    {   
+        if ($search === "none")
+        {
+            $questions = [];
+        } else {
+            $questions = $questionRepo->findBySearch($search);
+        }
+        return $this->json(json_encode($questions));
     }
 }

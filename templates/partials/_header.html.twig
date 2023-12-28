@@ -6,6 +6,10 @@
 		<div id="search" class="search p-10 flex-fill d-flex align-center flex-row">
 			<i class="fas fa-search mr-10"></i>
 			<input @input="updateInput" ref="input" type="text" class="flex-fill">
+			<img v-if="isLoading" src="{{ asset('build/pics/loading.gif') }}" alt="loading" class="search-loading">
+			<ul class="search-result d-flex flex-col" v-if="questions?.length">
+				<a v-for="question in questions" :key="question.id" v-bind:href="'/question/' + question.id">${ question.title }$</a>
+			</ul>
 		</div>
 		{% if is_granted('ROLE_USER') %}
 			<div class="d-flex flow-row-nowrap justify-center align-center md-hide">
