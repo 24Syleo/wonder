@@ -15,7 +15,7 @@
                     </a>
                     <div class="d-flex flex-row justify-between align-center">
                         <a href="{{ path('user', {id: question.author.id}) }}" class="d-flex flex-row align-center">
-                            <img class="avatar mr-10" src="{{ question.author.picture }}">
+                            <img class="avatar mr-10" src="{{ asset(question.author.picture) }}">
                             <small>Demandé par <span class="clickable">{{ question.author.fullname }}</span></small>
                         </a>
                         <div class="d-flex flex-row align-center">

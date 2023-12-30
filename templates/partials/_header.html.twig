@@ -14,7 +14,7 @@
 		{% if is_granted('ROLE_USER') %}
 			<div class="d-flex flow-row-nowrap justify-center align-center md-hide">
 				<a href="{{ path('current_user') }}">
-					<img src="{{ app.user.picture }}" class="avatar avatar-lg mr-10">
+					<img src="{{ asset(app.user.picture) }}" class="avatar avatar-lg mr-10">
 				</a>
 				<small>
 					<a href="{{ path('logout') }}">Déconnexion</a>
